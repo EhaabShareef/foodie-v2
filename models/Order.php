@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../includes/db_connection.php';
 
 class Order {
+
+    // get all orders function
     public static function getAll() {
         $conn = getDbConnection();
         $result = $conn->query("SELECT * FROM orders ORDER BY created_at DESC");
@@ -13,6 +15,7 @@ class Order {
         return $orders;
     }
 
+    // get order based on Id
     public static function getById($id) {
         $conn = getDbConnection();
         $stmt = $conn->prepare("SELECT * FROM orders WHERE id = ?");
@@ -25,6 +28,7 @@ class Order {
         return $order;
     }
 
+    // get order items based on order id
     public static function getOrderItems($orderId) {
         $conn = getDbConnection();
         $stmt = $conn->prepare("SELECT oi.*, f.name as food_name FROM order_items oi JOIN food f ON oi.food_id = f.id WHERE oi.order_id = ?");
@@ -40,6 +44,7 @@ class Order {
         return $items;
     }
 
+    // update order status
     public static function updateStatus($id, $status) {
         $conn = getDbConnection();
         $stmt = $conn->prepare("UPDATE orders SET status = ?, updated_at = NOW() WHERE id = ?");
@@ -51,6 +56,10 @@ class Order {
     }
 
     // create order from cart page
+    /*
+        1. insert order first
+        2. loop and insert order items
+    */
     public static function create($customer_name, $customer_email, $customer_phone, $total_amount, $cart_items) {
         $conn = getDbConnection();
         
@@ -97,7 +106,7 @@ class Order {
         }
     }
 
-    // For Dashboard Statistics
+    // for admin dashboard statistic cards
     public static function getOrderCountsByStatus() {
         $conn = getDbConnection();
         $result = $conn->query("SELECT status, COUNT(*) as count FROM orders GROUP BY status");

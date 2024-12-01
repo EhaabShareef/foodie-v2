@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../includes/db_connection.php';
 
 class FoodItem {
+
+    // get all function
     public static function getAll() {
         $conn = getDbConnection();
         $result = $conn->query("SELECT f.*, c.name as category_name FROM food f JOIN food_category c ON f.category_id = c.id WHERE f.is_active = 1 ORDER BY f.name");
@@ -13,6 +15,7 @@ class FoodItem {
         return $items;
     }
 
+    // get individual food item by id
     public static function getById($id) {
         $conn = getDbConnection();
         $stmt = $conn->prepare("SELECT f.*, c.name as category_name FROM food f JOIN food_category c ON f.category_id = c.id WHERE f.id = ?");
@@ -25,6 +28,7 @@ class FoodItem {
         return $item;
     }
 
+    // create new function
     public static function add($category_id, $name, $description, $price, $image) {
         $conn = getDbConnection();
         $image_path = self::uploadImage($image);
@@ -37,6 +41,7 @@ class FoodItem {
         return $result;
     }
 
+    // update/edit function
     public static function update($id, $category_id, $name, $description, $price, $image, $is_active) {
         $conn = getDbConnection();
         
@@ -55,6 +60,7 @@ class FoodItem {
         return $result;
     }
 
+    // delete function
     public static function delete($id) {
         $conn = getDbConnection();
         $stmt = $conn->prepare("DELETE FROM food WHERE id = ?");
@@ -65,6 +71,7 @@ class FoodItem {
         return $result;
     }
 
+    // utility function for add and update
     private static function uploadImage($image) {
         $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/public/uploads/food_items/";
         $file_extension = pathinfo($image["name"], PATHINFO_EXTENSION);

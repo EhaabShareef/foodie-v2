@@ -28,7 +28,7 @@ class Category {
         return $result;
     }
 
-    // update/edit functions
+    // update/edit function
     public static function update($id, $name, $description, $image, $is_active) {
         $conn = getDbConnection();
         
@@ -47,7 +47,8 @@ class Category {
         return $result;
     }
 
-
+    // utility function for create and update function to store image
+    // **WILL NOT WORK UNLESS THE FOLDERS ARE CREATED**
     private static function uploadImage($image) {
         $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/public/uploads/categories/";
         $file_extension = pathinfo($image["name"], PATHINFO_EXTENSION);
@@ -61,6 +62,7 @@ class Category {
         }
     }
 
+    // delete function
     public static function delete($id) {
         $conn = getDbConnection();
         $stmt = $conn->prepare("DELETE FROM food_category WHERE id = ?");
@@ -71,6 +73,7 @@ class Category {
         return $result;
     }
 
+    //get individual category by function
     public static function getById($id) {
         $conn = getDbConnection();
         $stmt = $conn->prepare("SELECT * FROM food_category WHERE id = ?");
