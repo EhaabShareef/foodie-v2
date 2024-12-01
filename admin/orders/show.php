@@ -57,7 +57,7 @@ defineSection('content', function() use ($order, $orderItems) {
                         Total Amount
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        $<?php echo number_format($order['total_amount'], 2); ?>
+                    ރ <?php echo number_format($order['total_amount'], 2); ?>
                     </dd>
                 </div>
                 <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -116,10 +116,10 @@ defineSection('content', function() use ($order, $orderItems) {
                             <?php echo htmlspecialchars($item['quantity']); ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            $<?php echo number_format($item['item_price'], 2); ?>
+                        ރ <?php echo number_format($item['item_price'], 2); ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            $<?php echo number_format($item['quantity'] * $item['item_price'], 2); ?>
+                        ރ <?php echo number_format($item['quantity'] * $item['item_price'], 2); ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -129,7 +129,7 @@ defineSection('content', function() use ($order, $orderItems) {
     </div>
 
     <div class="mt-4 ms-3">
-        <a href="index.php" class="text-indigo-600 hover:text-indigo-900">Back to Orders</a>
+        <a href="index.php" class="text-orange-600 hover:text-orange-900">Back to Orders</a>
     </div>
 <?php
 });

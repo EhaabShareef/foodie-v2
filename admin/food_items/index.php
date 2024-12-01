@@ -20,7 +20,7 @@ defineSection('content', function() {
             <h3 class="text-lg leading-6 font-medium text-gray-900">
                 Food Item List
             </h3>
-            <a href="add.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text=sm">
+            <a href="add.php" class="text-sm bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded text=sm">
                 Add New Food Item
             </a>
         </div>

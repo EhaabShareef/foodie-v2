@@ -11,10 +11,10 @@ defineSection('title', function() {
 defineSection('content', function() {
 ?>
     <div class="text-center">
-        <h1 class="text-4xl font-bold mb-4">Welcome to Foodie MV</h1>
-        <p class="text-xl mb-8">Discover the best food in the Maldives!</p>
-        <a href="menu.php" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-            View Our Menu
+        <h1 class="text-4xl font-bold mb-4 font-dyna text-orange-400 mt-24">Welcome to Foodie MV</h1>
+        <p class="text-sm text-neutral-500 mb-8">Discover the best food in the Maldives!</p>
+        <a href="menu.php" class="bg-neutral-800 hover:bg-neutral-950 text-white text-sm font-bold py-2 px-4 rounded transition-colors">
+            View Menu
         </a>
     </div>
 <?php

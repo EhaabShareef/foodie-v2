@@ -44,17 +44,17 @@ defineSection('title', function() {
 defineSection('content', function() use ($categories, $foodItems) {
 ?>
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold mb-8 text-center">Our Menu</h1>
+        <h1 class="text-4xl font-bold mb-4 font-dyna text-orange-400 text-center">Our Menu</h1>
 
         <!-- Category Selection -->
         <div class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">Categories</h2>
+            <h2 class="text-2xl font-semibold mb-6 font-dyna text-neutral-700">Categories</h2>
             <div class="flex flex-wrap gap-4" id="category-buttons">
-                <button class="category-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" data-category="all">
+                <button class="category-btn bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded" data-category="all">
                     All
                 </button>
                 <?php foreach ($categories as $category): ?>
-                    <button class="category-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded" data-category="<?php echo htmlspecialchars($category['id']); ?>">
+                    <button class="category-btn bg-neutral-200 hover:bg-orange-300 text-gray-800 font-bold py-2 px-4 rounded" data-category="<?php echo htmlspecialchars($category['id']); ?>">
                         <?php echo htmlspecialchars($category['name']); ?>
                     </button>
                 <?php endforeach; ?>
@@ -68,12 +68,12 @@ defineSection('content', function() use ($categories, $foodItems) {
                     <img src="<?php echo htmlspecialchars($item['image_path']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" class="w-full h-48 object-cover">
                     <div class="p-4">
                         <h3 class="text-xl font-semibold mb-2"><?php echo htmlspecialchars($item['name']); ?></h3>
-                        <p class="text-gray-600 mb-4"><?php echo htmlspecialchars($item['description']); ?></p>
+                        <p class="text-neutral-500 text-sm mb-4"><?php echo htmlspecialchars($item['description']); ?></p>
                         <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold">$<?php echo number_format($item['price'], 2); ?></span>
+                            <span class="text-xl font-bold">ރ <?php echo number_format($item['price'], 2); ?></span>
                             <form method="POST" action="menu.php">
                                 <input type="hidden" name="item_id" value="<?php echo $item['id']; ?>">
-                                <button type="submit" name="add_to_cart" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                                <button type="submit" name="add_to_cart" class="bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-bold py-2 px-4 rounded">
                                     Add to Cart
                                 </button>
                             </form>
@@ -98,10 +98,10 @@ defineSection('scripts', function() {
                     const category = this.getAttribute('data-category');
 
                     // Update active button
-                    categoryButtons.forEach(btn => btn.classList.remove('bg-blue-500', 'text-white'));
-                    categoryButtons.forEach(btn => btn.classList.add('bg-gray-200', 'text-gray-800'));
-                    this.classList.remove('bg-gray-200', 'text-gray-800');
-                    this.classList.add('bg-blue-500', 'text-white');
+                    categoryButtons.forEach(btn => btn.classList.remove('bg-orange-500', 'text-white'));
+                    categoryButtons.forEach(btn => btn.classList.add('bg-orange-200', 'text-gray-800'));
+                    this.classList.remove('bg-orange-200', 'text-gray-800');
+                    this.classList.add('bg-orange-600', 'text-white');
 
                     // Filter food items
                     foodItems.forEach(item => {

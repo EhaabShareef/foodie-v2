@@ -66,7 +66,7 @@ defineSection('content', function() use ($orderCounts, $projectedRevenue, $earne
                                 Projected Revenue
                             </dt>
                             <dd class="text-3xl font-semibold text-gray-900">
-                                $<?php echo number_format($projectedRevenue, 2); ?>
+                            ރ <?php echo number_format($projectedRevenue, 2); ?>
                             </dd>
                         </dl>
                     </div>
@@ -87,7 +87,7 @@ defineSection('content', function() use ($orderCounts, $projectedRevenue, $earne
                                 Revenue Earned
                             </dt>
                             <dd class="text-3xl font-semibold text-gray-900">
-                                $<?php echo number_format($earnedRevenue, 2); ?>
+                            ރ <?php echo number_format($earnedRevenue, 2); ?>
                             </dd>
                         </dl>
                     </div>

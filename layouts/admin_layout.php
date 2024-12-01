@@ -41,12 +41,12 @@ require_once __DIR__ . '/../includes/template.php';
             <h1 class="text-2xl font-dyna font-bold">Foodie MV</h1>
             <h2 class="text-sm text-neutral-500">Admin Pannel</h2>
         </div>
-        <nav class="flex mt-4 space-y-4">
-            <ul>
-                <li><a href="/admin/index.php" class="block py-2 px-4 hover:bg-neutral-700">Dashboard</a></li>
-                <li><a href="/admin/categories/index.php" class="block py-2 px-4 hover:bg-neutral-700">Categories</a></li>
-                <li><a href="/admin/food_items/index.php" class="block py-2 px-4 hover:bg-neutral-700">Food Items</a></li>
-                <li><a href="/admin/orders/index.php" class="block py-2 px-4 hover:bg-neutral-700">Orders</a></li>
+        <nav class="flex mt-12 w-full">
+            <ul class="flex flex-col w-full">
+                <li class="py-4 px-6 hover:bg-neutral-700 mr-2 rounded-md"><a href="/admin/index.php">Dashboard</a></li>
+                <li class="py-4 px-6 hover:bg-neutral-700 mr-2 rounded-md" ><a href="/admin/categories/index.php">Categories</a></li >
+                <li class="py-4 px-6 hover:bg-neutral-700 mr-2 rounded-md"><a href="/admin/food_items/index.php">Food Items</a></li >
+                <li class="py-4 px-6 hover:bg-neutral-700 mr-2 rounded-md"><a href="/admin/orders/index.php">Orders</a></li>
             </ul>
         </nav>
     </aside>
@@ -57,7 +57,7 @@ require_once __DIR__ . '/../includes/template.php';
                 <h2 class="text-2xl font-bold leading-tight text-neutral-900">
                     <?php echo renderSection('header') ?>
                 </h2>
-                <a href="/index.php" class="text-cyan-500 hover:text-blue-600">Back to Site</a>
+                <a href="/index.php" class="font-bold text-sm text-orange-500 hover:text-orange-600">Back to Site</a>
             </div>
         </header>
 

@@ -34,16 +34,18 @@ require_once __DIR__ . '/../includes/template.php';
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-100">
+<body class="flex flex-col min-h-screen bg-gray-100 transition-colors">
     <header class="bg-neutral-800 text-white">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold font-dyna">Foodie MV</div>
             <ul class="flex space-x-12">
-                <li><a href="index.php" class="hover:text-gray-300">Home</a></li>
-                <li><a href="/menu.php" class="hover:text-gray-300">Menu</a></li>
+                <li><a href="index.php" class="hover:text-orange-600">Home</a></li>
+                <li><a href="/menu.php" class="hover:text-orange-600">Menu</a></li>
                 <li>
-                    <a href="cart.php" class="text-gray-600 hover:text-blue-600 relative">
-                        Cart
+                    <a href="cart.php" class="hover:text-orange-600 relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
+                        <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
                         <?php if (!empty($_SESSION['cart'])): ?>
                             <span class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                                 <?php echo array_sum(array_column($_SESSION['cart'], 'quantity')); ?>
@@ -51,7 +53,7 @@ require_once __DIR__ . '/../includes/template.php';
                         <?php endif; ?>
                     </a>
                 </li>
-                <li><a href="/admin/index.php" class="hover:text-gray-300">Admin</a></li>
+                <li><a href="/admin/index.php" class="border border-white hover:text-orange-600 hover:border-orange-600 rounded-lg py-2 px-3">Admin</a></li>
             </ul>
         </nav>
     </header>
