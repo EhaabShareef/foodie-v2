@@ -32,13 +32,14 @@ require_once __DIR__ . '/../includes/template.php';
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Inter', sans-serif;
         }
+
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-100 transition-colors">
     <header class="bg-neutral-800 text-white">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold font-dyna">Foodie MV</div>
-            <ul class="flex space-x-12">
+            <ul class="flex space-x-12 font-inter">
                 <li><a href="index.php" class="hover:text-orange-600">Home</a></li>
                 <li><a href="/menu.php" class="hover:text-orange-600">Menu</a></li>
                 <li>
@@ -63,7 +64,7 @@ require_once __DIR__ . '/../includes/template.php';
     </main>
 
     <footer class="bg-neutral-900 text-neutral-300 text-xs py-4 mt-auto">
-        <div class="container mx-auto px-4 text-center">
+        <div class="container mx-auto px-4 text-center font-inter">
             <p>&copy; <?php echo date('Y'); ?> Foodie MV. All rights reserved.</p>
         </div>
     </footer>

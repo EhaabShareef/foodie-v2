@@ -41,12 +41,12 @@ require_once __DIR__ . '/../includes/template.php';
             <h1 class="text-2xl font-dyna font-bold">Foodie MV</h1>
             <h2 class="text-sm text-neutral-500">Admin Pannel</h2>
         </div>
-        <nav class="flex mt-12 w-full">
-            <ul class="flex flex-col w-full">
-                <li class="py-4 px-6 hover:bg-neutral-700 mr-2 rounded-md"><a href="/admin/index.php">Dashboard</a></li>
-                <li class="py-4 px-6 hover:bg-neutral-700 mr-2 rounded-md" ><a href="/admin/categories/index.php">Categories</a></li >
-                <li class="py-4 px-6 hover:bg-neutral-700 mr-2 rounded-md"><a href="/admin/food_items/index.php">Food Items</a></li >
-                <li class="py-4 px-6 hover:bg-neutral-700 mr-2 rounded-md"><a href="/admin/orders/index.php">Orders</a></li>
+        <nav class="flex p-2 mt-12 mr-2">
+            <ul class="flex  flex-col w-full font-inter">
+                <li class="py-4 px-6 hover:bg-neutral-700 rounded-md"><a href="/admin/index.php">Dashboard</a></li>
+                <li class="py-4 px-6 hover:bg-neutral-700 rounded-md" ><a href="/admin/categories/index.php">Categories</a></li >
+                <li class="py-4 px-6 hover:bg-neutral-700 rounded-md"><a href="/admin/food_items/index.php">Food Items</a></li >
+                <li class="py-4 px-6 hover:bg-neutral-700 rounded-md"><a href="/admin/orders/index.php">Orders</a></li>
             </ul>
         </nav>
     </aside>
