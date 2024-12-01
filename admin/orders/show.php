@@ -65,7 +65,7 @@ defineSection('content', function() use ($order, $orderItems) {
                         Status
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        <span class="px-4 py-2 inline-flex text-xs leading-5 font-semibold rounded-lg bg-<?php echo $order['status'] === 'completed' ? 'green' : 'yellow'; ?>-100 text-<?php echo $order['status'] === 'completed' ? 'green' : 'yellow'; ?>-800">
+                        <span class="px-4 py-2 inline-flex text-xs leading-5 font-semibold rounded-lg bg-<?php echo $order['status'] === 'Delivered' ? 'green' : 'yellow'; ?>-100 text-<?php echo $order['status'] === 'Delivered' ? 'green' : 'yellow'; ?>-800">
                             <?php echo ucfirst(htmlspecialchars($order['status'])); ?>
                         </span>
                     </dd>

@@ -102,10 +102,10 @@ class Order {
         $conn = getDbConnection();
         $result = $conn->query("SELECT status, COUNT(*) as count FROM orders GROUP BY status");
         $counts = [
-            'pending' => 0,
-            'processing' => 0,
-            'completed' => 0,
-            'cancelled' => 0
+            'Pending' => 0,
+            'Processing' => 0,
+            'Delivered' => 0,
+            'Cancelled' => 0
         ];
         while ($row = $result->fetch_assoc()) {
             $counts[$row['status']] = $row['count'];
@@ -116,7 +116,7 @@ class Order {
 
     public static function getProjectedRevenue() {
         $conn = getDbConnection();
-        $result = $conn->query("SELECT SUM(total_amount) as projected_revenue FROM orders WHERE status != 'cancelled'");
+        $result = $conn->query("SELECT SUM(total_amount) as projected_revenue FROM orders WHERE status != 'Cancelled'");
         $row = $result->fetch_assoc();
         $conn->close();
         return $row['projected_revenue'] ?? 0;
@@ -124,9 +124,17 @@ class Order {
 
     public static function getEarnedRevenue() {
         $conn = getDbConnection();
-        $result = $conn->query("SELECT SUM(total_amount) as earned_revenue FROM orders WHERE status = 'completed'");
+        $result = $conn->query("SELECT SUM(total_amount) as earned_revenue FROM orders WHERE status = 'Delivered'");
         $row = $result->fetch_assoc();
         $conn->close();
         return $row['earned_revenue'] ?? 0;
+    }
+
+    public static function getLostRevenue() {
+        $conn = getDbConnection();
+        $result = $conn->query("SELECT SUM(total_amount) as earned_revenue FROM orders WHERE status = 'Cancelled'");
+        $row = $result->fetch_assoc();
+        $conn->close();
+        return $row['lost_revenue'] ?? 0;
     }
 }

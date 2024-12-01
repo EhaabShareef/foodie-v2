@@ -58,7 +58,7 @@ defineSection('content', function() {
                         ރ <?php echo number_format($order['total_amount'], 2); ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-3 py-2 inline-flex text-xs leading-5 font-semibold rounded-lg bg-<?php echo $order['status'] === 'completed' ? 'green' : 'yellow'; ?>-100 text-<?php echo $order['status'] === 'completed' ? 'green' : 'yellow'; ?>-800">
+                            <span class="px-3 py-2 inline-flex text-xs leading-5 font-semibold rounded-lg bg-<?php echo $order['status'] === 'Delivered' ? 'green' : 'yellow'; ?>-100 text-<?php echo $order['status'] === 'Delivered' ? 'green' : 'yellow'; ?>-800">
                                 <?php echo ucfirst(htmlspecialchars($order['status'])); ?>
                             </span>
                         </td>
