@@ -48,10 +48,10 @@ defineSection('content', function() use ($order) {
                 </select>
             </div>
             <div class="flex items-center justify-between">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <button type="submit" class="text-sm bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Update Status
                 </button>
-                <a href="show.php?id=<?php echo $order['id']; ?>" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                <a href="show.php?id=<?php echo $order['id']; ?>" class="inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800">
                     Cancel
                 </a>
             </div>
