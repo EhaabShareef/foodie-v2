@@ -36,3 +36,10 @@ CREATE TABLE admin (
 );
 ```
 
+- Run the command below to run seed Admin user
+
+```cmd
+php includes/seed.php
+```
+
+- You can login with the credentials specified in include/seed.php for admin access.
