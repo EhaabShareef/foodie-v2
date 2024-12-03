@@ -36,7 +36,7 @@ CREATE TABLE admin (
 );
 ```
 
-- Run the command below to run seed Admin user
+- Run the command below to run seed Admin user.
 
 ```cmd
 php includes/seed.php

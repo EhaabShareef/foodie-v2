@@ -35,18 +35,12 @@ defineSection('header', function() {
     echo 'Delete Admin User';
 });
 
-defineSection('content', function() use ($admin, $error) {
+defineSection('content', function() use ($admin) {
 ?>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <?php if (isset($error)): ?>
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong class="font-bold">Error!</strong>
-                <span class="block sm:inline"><?php echo htmlspecialchars($error); ?></span>
-            </div>
-        <?php endif; ?>
 
-        <h2 class="text-2xl font-bold mb-4">Are you sure you want to delete this admin user?</h2>
-        <div class="mb-4">
+        <h2 class="text-2xl font-bold mb-6">Are you sure you want to delete this admin user?</h2>
+        <div class="mb-12 text-base space-y-4">
             <p><strong>Full Name:</strong> <?php echo htmlspecialchars($admin['full_name']); ?></p>
             <p><strong>Username:</strong> <?php echo htmlspecialchars($admin['user_name']); ?></p>
             <p><strong>Verified:</strong> <?php echo $admin['verified_yn'] === 'Y' ? 'Yes' : 'No'; ?></p>
@@ -54,10 +48,10 @@ defineSection('content', function() use ($admin, $error) {
         </div>
         <form action="" method="POST" class="flex items-center space-x-4">
             <input type="hidden" name="confirm" value="1">
-            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <button type="submit" class="text-sm bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 Confirm Delete
             </button>
-            <a href="index.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <a href="index.php" class="text-sm bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 Cancel
             </a>
         </form>

@@ -98,14 +98,14 @@ defineSection('content', function() use ($admin) {
             <div class="mb-4">
                 <label class="inline-flex items-center">
                     <input type="checkbox" class="form-checkbox" name="verified_yn" <?php echo $admin['verified_yn'] === 'Y' ? 'checked' : ''; ?>>
-                    <span class="ml-2">Verified</span>
+                    <span class="ml-2 font-inter text-xs font-semibold">Verified</span>
                 </label>
             </div>
-            <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <div class="flex items-center space-x-4">
+                <button class="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     Update Admin
                 </button>
-                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="index.php">
+                <a class="inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-400" href="index.php">
                     Cancel
                 </a>
             </div>

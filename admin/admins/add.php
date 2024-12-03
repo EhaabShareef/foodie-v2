@@ -4,86 +4,83 @@ require_once '../../models/Admin.php';
 
 $template->setLayout(__DIR__ . '/../../layouts/admin_layout.php');
 
+$message = '';
+$messageType = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = $_POST['full_name'] ?? '';
-    $user_name = $_POST['user_name'] ?? '';
+    $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
+    $is_approved = isset($_POST['is_approved']) ? true : false;
 
-    $errors = [];
-
-    // Validate inputs
-    if (empty($full_name)) {
-        $errors[] = "Full name is required.";
-    }
-    if (empty($user_name)) {
-        $errors[] = "Username is required.";
-    }
-    if (empty($password)) {
-        $errors[] = "Password is required.";
-    } elseif (strlen($password) < 8) {
-        $errors[] = "Password must be at least 8 characters long.";
-    }
     if ($password !== $confirm_password) {
-        $errors[] = "Passwords do not match.";
-    }
-
-    if (empty($errors)) {
-        try {
-            if (Admin::create($full_name, $user_name, $password)) {
-                header('Location: index.php');
-                exit;
-            } else {
-                $errors[] = "Failed to add admin.";
-            }
-        } catch (Exception $e) {
-            $errors[] = $e->getMessage();
+        $message = "Passwords do not match.";
+        $messageType = "error";
+    } else {
+        $result = Admin::create($full_name, $username, $password, $is_approved);
+        if ($result['success']) {
+            $_SESSION['message'] = $result['message'];
+            $_SESSION['messageType'] = "success";
+            header('Location: index.php');
+            exit;
+        } else {
+            $message = $result['message'];
+            $messageType = "error";
         }
     }
 }
 
 defineSection('title', function() {
-    echo 'Add Admin';
+    echo 'Add New Admin';
 });
 
 defineSection('header', function() {
     echo 'Add New Admin';
 });
 
-defineSection('content', function() {
+defineSection('content', function() use ($message, $messageType) {
 ?>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <?php if ($message): ?>
+            <div class="mb-4 p-4 rounded <?php echo $messageType === 'error' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'; ?>">
+                <?php echo htmlspecialchars($message); ?>
+            </div>
+        <?php endif; ?>
 
-        <form action="" method="POST">
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="full_name">
-                    Full Name
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="full_name" type="text" name="full_name" required value="<?php echo htmlspecialchars($_POST['full_name'] ?? ''); ?>">
+        <form action="" method="POST" class="space-y-6">
+            <div>
+                <label for="full_name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                <input type="text" name="full_name" id="full_name" required class="py-2 px-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="user_name">
-                    Username
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="user_name" type="text" name="user_name" required value="<?php echo htmlspecialchars($_POST['user_name'] ?? ''); ?>">
+
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" name="username" id="username" required class="py-2 px-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                    Password
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" name="password" required>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password" id="password" required class="py-2 px-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm_password">
-                    Confirm Password
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="confirm_password" type="password" name="confirm_password" required>
+
+            <div>
+                <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" required class="py-2 px-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
+
+            <div>
+                <label class="inline-flex items-center">
+                    <input type="checkbox" name="is_approved" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <span class="ml-2 font-heading text-xs">Approve immediately</span>
+                </label>
+            </div>
+
             <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                <button type="submit" class="text-sm bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Add Admin
                 </button>
-                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="index.php">
+                <a href="index.php" class="inline-block align-baseline font-bold text-sm text-cyan-500 hover:text-cyan-800">
                     Cancel
                 </a>
             </div>
