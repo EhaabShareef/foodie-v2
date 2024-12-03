@@ -1,7 +1,22 @@
 <?php
 // layouts/admin_layout.php
 require_once __DIR__ . '/../includes/template.php';
+require_once __DIR__ . '../../models/Admin.php';
+
+// protect admin pages with auth
+Admin::checkAdminSession();
+
+// Handle logout
+if (isset($_GET['logout'])) {
+    Admin::logout();
+    header('Location: /index.php');
+    exit;
+}
+
+// Get current admin user
+$currentAdmin = Admin::getCurrentAdmin();
 ?>
+
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
@@ -39,7 +54,7 @@ require_once __DIR__ . '/../includes/template.php';
     <aside class="w-64 bg-neutral-800 text-white">
         <div class="p-4 mt-6">
             <h1 class="text-2xl font-dyna font-bold">Foodie MV</h1>
-            <h2 class="text-sm text-neutral-500">Admin Pannel</h2>
+            <h2 class="text-sm text-neutral-500">Admin Panel</h2>
         </div>
         <nav class="flex p-2 mt-12 mr-2">
             <ul class="flex  flex-col w-full font-inter">
@@ -47,6 +62,7 @@ require_once __DIR__ . '/../includes/template.php';
                 <li class="py-4 px-6 hover:bg-neutral-700 rounded-md" ><a href="/admin/categories/index.php">Categories</a></li >
                 <li class="py-4 px-6 hover:bg-neutral-700 rounded-md"><a href="/admin/food_items/index.php">Food Items</a></li >
                 <li class="py-4 px-6 hover:bg-neutral-700 rounded-md"><a href="/admin/orders/index.php">Orders</a></li>
+                <li class="py-4 px-6 hover:bg-neutral-700 rounded-md"><a href="/admin/admins/index.php">Users</a></li>
             </ul>
         </nav>
     </aside>
@@ -57,7 +73,15 @@ require_once __DIR__ . '/../includes/template.php';
                 <h2 class="text-2xl font-bold leading-tight text-neutral-900">
                     <?php echo renderSection('header') ?>
                 </h2>
-                <a href="/index.php" class="font-bold text-sm text-orange-500 hover:text-orange-600">Back to Site</a>
+                <div class="flex items-center">
+                    <?php if ($currentAdmin): ?>
+                        <span class="mr-4 text-sm text-neutral-600">
+                            Logged in as: <strong><?php echo htmlspecialchars($currentAdmin['full_name']); ?></strong>
+                        </span>
+                    <?php endif; ?>
+                    <a href="/admin/index.php?logout=1" class="font-bold text-sm text-red-500 hover:text-red-600 mr-4">Logout</a>
+                    <a href="/index.php" class="font-bold text-sm text-orange-500 hover:text-orange-600">Back to Site</a>
+                </div>
             </div>
         </header>
 

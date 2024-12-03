@@ -20,3 +20,19 @@ Foodie MV is a web-based food ordering application for the Maldives. It allows c
 - JavaScript
 - Google Fonts (Inter for headings, Roboto for body text)
 
+## Admin Table
+
+- Drop Existing table and create new one
+
+```mysql
+CREATE TABLE admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    user_name VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    verified_yn ENUM('Y', 'N') NOT NULL DEFAULT 'N',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+```
+

@@ -1,6 +1,11 @@
 <?php
 // layouts/main_layout.php
 require_once __DIR__ . '/../includes/template.php';
+require_once __DIR__ . '../../models/Admin.php';
+
+//check if user is logged in
+$isLoggedIn = Admin::isLoggedIn();
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -54,7 +59,13 @@ require_once __DIR__ . '/../includes/template.php';
                         <?php endif; ?>
                     </a>
                 </li>
-                <li><a href="/admin/index.php" class="border border-white hover:text-orange-600 hover:border-orange-600 rounded-lg py-2 px-3">Admin</a></li>
+                <li>
+                <?php if ($isLoggedIn): ?>
+                        <a href="/admin/index.php" class="border border-white hover:text-orange-600 hover:border-orange-600 rounded-lg py-1 px-2">Admin</a>
+                    <?php else: ?>
+                        <a href="/login.php" class="border border-white hover:text-orange-600 hover:border-orange-600 rounded-lg py-1 px-2">Login</a>
+                <?php endif; ?>
+                </li>
             </ul>
         </nav>
     </header>
