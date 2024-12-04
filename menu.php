@@ -54,7 +54,7 @@ defineSection('content', function() use ($categories, $foodItems) {
                     All
                 </button>
                 <?php foreach ($categories as $category): ?>
-                    <button class="category-btn bg-neutral-200 hover:bg-orange-300 text-gray-800 font-bold py-2 px-4 rounded" data-category="<?php echo htmlspecialchars($category['id']); ?>">
+                    <button class="font-inter category-btn bg-neutral-200 hover:bg-orange-300 text-gray-800 font-bold py-2 px-4 rounded" data-category="<?php echo htmlspecialchars($category['id']); ?>">
                         <?php echo htmlspecialchars($category['name']); ?>
                     </button>
                 <?php endforeach; ?>

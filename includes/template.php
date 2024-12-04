@@ -1,5 +1,5 @@
 <?php
-// template.php
+// template.php used to render layouts with the appropriate page content
 
 class Template {
     protected $sections = [];
